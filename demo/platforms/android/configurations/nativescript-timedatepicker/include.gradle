@@ -1,7 +1,0 @@
-android { 
-	productFlavors {
-		"nativescript-timedatepicker" {
-			dimension "nativescripttimedatepicker"
-		}
-	}
-}
