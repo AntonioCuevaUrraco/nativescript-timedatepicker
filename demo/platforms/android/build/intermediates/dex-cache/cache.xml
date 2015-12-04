@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/usr/local/Cellar/android-sdk/24.3.3/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/antoniocueva/nativescript-timedatepicker/demo/platforms/android/build/intermediates/pre-dexed/nativescript-timedatepicker/debug/support-annotations-23.1.1-6f71881eabf2bde713f2f4e7668a9679fac8baef.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocueva/nativescript-timedatepicker/demo/platforms/android/libs/widgets.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ff3c62a8eb22f0111b882125ad1579dc6273fd90">
+        <dex dex="/Users/antoniocueva/nativescript-timedatepicker/demo/platforms/android/build/intermediates/pre-dexed/nativescript-timedatepicker/debug/widgets-e13554ad902ea61dfcfcd68be8d4c709e4149e69.jar" />
+    </item>
+    <item
+        jar="/Users/antoniocueva/nativescript-timedatepicker/demo/platforms/android/libs/nativescript.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5fbb3d912cf38709dccac745877a2cbf38fa81e0">
+        <dex dex="/Users/antoniocueva/nativescript-timedatepicker/demo/platforms/android/build/intermediates/pre-dexed/nativescript-timedatepicker/debug/nativescript-7b6648a9bd3ec10949473f928e1f3afd4c558486.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,8 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
+  <StackLayout>
+    <Label text="Tap some button" class="title"/>
+    <Button text="Timepicker" tap="{{ timeTap }}" />
+     <Button text="Datepicker" tap="{{ dateTap }}" />
+     <Button text="Both" tap="{{ bothTap }}" />
+  </StackLayout>
+</Page>
