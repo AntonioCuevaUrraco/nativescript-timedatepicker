@@ -7,17 +7,22 @@ function init(mCallback, title, initialDate) {
     //Title is not supported for android so we do nothing if there is one
     _act = _AndroidApplication.foregroundActivity || _AndroidApplication.startActivity;
     if (initialDate) {
-        mPickerManager = new com.android.datetimepicker.PickerManager().initialize(_act, initialDate, new com.android.datetimepicker.Callback({
+        mPickerManager = new com.android.datetimepicker.PickerManager().initialize(
+            _act,
+            _toNativeDate(initialDate), 
+            new com.android.datetimepicker.Callback({
             onResult: function (result) {
                 mCallback(result);
             }
         }));
     }
-    mPickerManager = new com.android.datetimepicker.PickerManager().initialize(_act, new com.android.datetimepicker.Callback({
-        onResult: function (result) {
-            mCallback(result);
-        }
-    }));
+    else{
+        mPickerManager = new com.android.datetimepicker.PickerManager().initialize(_act, new com.android.datetimepicker.Callback({
+            onResult: function (result) {
+                mCallback(result);
+            }
+        }));
+    }
     if (mPickerManager) {
         _isInit = true;
         return true;
@@ -64,7 +69,13 @@ function showDateTimePickerDialog() {
 }
 exports.showDateTimePickerDialog = showDateTimePickerDialog;
 function _toNativeDate(date) {
-    return mPickerManager.getCalendar(date.getDate(), date.getMonth(), date.getFullYear(), date.getHours(), date.getMinutes());
+        var nativeDate = java.util.Calendar.getInstance();
+        nativeDate.set(java.util.Calendar.YEAR, date.getFullYear());
+        nativeDate.set(java.util.Calendar.MONTH, date.getMonth());
+        nativeDate.set(java.util.Calendar.DAY_OF_MONTH, date.getDate());
+        nativeDate.set(java.util.Calendar.HOUR_OF_DAY, date.getHours());
+        nativeDate.set(java.util.Calendar.MINUTE, date.getMinutes());
+        return nativeDate;
 }
 exports._toNativeDate = _toNativeDate;
 function _getDatePickerDialog() {

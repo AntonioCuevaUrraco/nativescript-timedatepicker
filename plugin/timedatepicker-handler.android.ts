@@ -19,13 +19,14 @@ export function init(mCallback: any, title?: any, initialDate?: any): boolean {
     if(initialDate){
     mPickerManager = new com.android.datetimepicker.PickerManager().initialize(
       _act,
-      initialDate,
+      _toNativeDate(initialDate),
       new com.android.datetimepicker.Callback({
         onResult: function(result) {
          mCallback(result);
         }
       }));
     }
+    else{
     //initialize with actual system date
     mPickerManager = new com.android.datetimepicker.PickerManager().initialize(
     _act,
@@ -34,7 +35,7 @@ export function init(mCallback: any, title?: any, initialDate?: any): boolean {
         mCallback(result);
       }
     }));
-
+    }
     if (mPickerManager) {
       _isInit = true;
       return true;
@@ -80,12 +81,13 @@ export function showDateTimePickerDialog() {
 }
 
 export function _toNativeDate(date:Date): java.util.Calendar {
-    return mPickerManager.getCalendar(
-      date.getDate(), 
-      date.getMonth(),
-      date.getFullYear(),
-      date.getHours(),
-      date.getMinutes());
+  var nativeDate = java.util.Calendar.getInstance();
+  nativeDate.set(java.util.Calendar.YEAR, date.getFullYear());
+  nativeDate.set(java.util.Calendar.MONTH, date.getMonth());
+  nativeDate.set(java.util.Calendar.DAY_OF_MONTH, date.getDate());
+  nativeDate.set(java.util.Calendar.HOUR_OF_DAY, date.getHours());
+  nativeDate.set(java.util.Calendar.MINUTE, date.getMinutes());
+  return nativeDate;
 }
 
 /**

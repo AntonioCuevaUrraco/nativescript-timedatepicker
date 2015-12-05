@@ -34,7 +34,7 @@ function init(mCallback, title, initialDate) {
         mPickerManager = IQActionSheetPickerView.alloc().initWithTitleDelegate("", _delegate);
     }
     if (initialDate) {
-        mPickerManager.date = initialDate;
+    mPickerManager.date = _toNativeDate(initialDate);  
     }
     if (mPickerManager) {
         _isInit = true;

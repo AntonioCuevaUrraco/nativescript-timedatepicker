@@ -39,7 +39,7 @@ export function init(mCallback: any, title?: any, initialDate?: any): boolean {
 
   //initialize with initial date
   if (initialDate) {
-    mPickerManager.date = initialDate;  
+    mPickerManager.date = _toNativeDate(initialDate);  
    }
   
   if (mPickerManager) {
