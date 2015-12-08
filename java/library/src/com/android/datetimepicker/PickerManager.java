@@ -49,8 +49,11 @@ public class PickerManager implements DatePickerDialog.OnDateSetListener, TimePi
      */
     public PickerManager initialize(Activity nativeScriptActivity, Calendar initialDate,  final Callback<String> mCallback) {
         this.nativeScriptActivity = nativeScriptActivity;
-        mDateDialog = DatePickerDialog.newInstance(this, initialDate.get(Calendar.YEAR), initialDate.get(Calendar.MONTH), initialDate.get(Calendar.DAY_OF_MONTH));
-        mTimeDialog = TimePickerDialog.newInstance(this, initialDate.get(Calendar.HOUR_OF_DAY), initialDate.get(Calendar.MINUTE), true);
+        this.mCallbackObject=mCallback;
+        this.calendar = initialDate;
+        this.mTimeZone=initialDate.getTimeZone();
+        this.mDateDialog = DatePickerDialog.newInstance(this, initialDate.get(Calendar.YEAR), initialDate.get(Calendar.MONTH), initialDate.get(Calendar.DAY_OF_MONTH));
+        this.mTimeDialog = TimePickerDialog.newInstance(this, initialDate.get(Calendar.HOUR_OF_DAY), initialDate.get(Calendar.MINUTE), true);
         return this;
     }
 
