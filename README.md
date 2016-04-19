@@ -21,6 +21,12 @@ var mCallback = function (result) {
 PickerManager.init(mCallback,null,null);
 //Show the dialog
 PickerManager.showTimePickerDialog();
+
+```
+```ts
+//If you want to convert the string into a js Date I recomend to use moment.js
+  var scheduleMoment = moment(result, "DD MM YYYY HH:mm z");
+  var scheduleDate = scheduleMoment.toDate();
 ```
 For more examples of usage see the demo [main-view-model.ts](https://github.com/AntonioCuevaUrraco/nativescript-timedatepicker/tree/master/demo/app).
 
