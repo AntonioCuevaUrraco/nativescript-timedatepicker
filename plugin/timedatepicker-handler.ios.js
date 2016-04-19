@@ -18,23 +18,35 @@ var MyDelegate = (function (_super) {
     };
     MyDelegate.prototype.actionSheetPickerViewDidSelectDate = function (pickerView, date) {
         this.dateFormater = NSDateFormatter.alloc().init();
-        this.dateFormater.dateFormat = "EEE, d MMM yyyy HH:mm:ss z";
+        this.dateFormater.dateFormat = "dd MM yyyy HH:mm Z";
         this.mCallback(this.dateFormater.stringFromDate(date));
     };
+
     MyDelegate.ObjCProtocols = [IQActionSheetPickerViewDelegate];
     return MyDelegate;
 })(NSObject);
 var _delegate = new MyDelegate();
-function init(mCallback, title, initialDate) {
+var _title="";
+var _doneText="Done";
+var _cancelText="Cancel";
+function init(mCallback, title, initialDate, doneText, cancelText, buttonColor) {
     _delegate.setCallback(mCallback);
-    if (title) {
-        mPickerManager = IQActionSheetPickerView.alloc().initWithTitleDelegate(title, _delegate);
+    if(title){
+        _title=title;
     }
-    else {
-        mPickerManager = IQActionSheetPickerView.alloc().initWithTitleDelegate("", _delegate);
+    if(doneText){
+        _doneText=doneText;
     }
+    if (cancelText){
+        _cancelText=cancelText;
+    } 
+    mPickerManager = IQActionSheetPickerView.alloc().initWithTitleDoneTextCancelTextDelegate(_title, _doneText, _cancelText, _delegate);
+   
     if (initialDate) {
     mPickerManager.date = _toNativeDate(initialDate);  
+    }
+    if(buttonColor){
+        mPickerManager.buttonColor = buttonColor;
     }
     if (mPickerManager) {
         _isInit = true;
@@ -82,17 +94,22 @@ function showDateTimePickerDialog() {
     }
 }
 exports.showDateTimePickerDialog = showDateTimePickerDialog;
+function dismiss() {
+  if (_isInitFunction()) {
+    mPickerManager.dismiss();
+  }
+}
+exports.dismiss = dismiss;
 function _toNativeDate(date) {
     if (_isInitFunction()) {
         var comps = NSDateComponents.alloc().init();
         comps.day = date.getDate();
-        comps.month = date.getMonth();
+        comps.month = date.getMonth()+1;
         comps.year = date.getFullYear();
         comps.hour = date.getHours();
         comps.minute = date.getMinutes();
         var cal = NSCalendar.alloc().initWithCalendarIdentifier(NSGregorianCalendar);
         var nativeDate = cal.dateFromComponents(comps);
-        comps.release();
         return nativeDate;
     }
 }
