@@ -1,7 +1,7 @@
 var observable = require("data/observable");
 var applicationModule = require("application");
 var PickerManager= require("nativescript-timedatepicker");
-
+var color = require("color");
 
 
 var HelloWorldModel = (function (_super) {
@@ -10,13 +10,17 @@ var HelloWorldModel = (function (_super) {
         _super.call(this);
     }
     HelloWorldModel.prototype.timeTap = function () {
+        console.log("time tap");
         
      var mCallback = function (result) {
         if (result) {
             alert("the time is "+result);
         }
     };
-    PickerManager.init(mCallback,null,null);
+
+    var mColor = new color.Color("#ed5d40");
+
+    PickerManager.init(mCallback,null,null, "Apply", "NotApply",  mColor.ios);
 
     PickerManager.showTimePickerDialog();
 
