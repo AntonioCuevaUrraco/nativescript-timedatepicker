@@ -39,17 +39,19 @@ function init(mCallback, title, initialDate, doneText, cancelText, buttonColor) 
     }
     if (cancelText){
         _cancelText=cancelText;
-    } 
+    }
     mPickerManager = IQActionSheetPickerView.alloc().initWithTitleDoneTextCancelTextDelegate(_title, _doneText, _cancelText, _delegate);
-   
+    if (mPickerManager) {
+        _isInit = true;
+    }
+
     if (initialDate) {
-    mPickerManager.date = _toNativeDate(initialDate);  
+        mPickerManager.date = _toNativeDate(initialDate);
     }
     if(buttonColor){
         mPickerManager.buttonColor = buttonColor;
     }
-    if (mPickerManager) {
-        _isInit = true;
+    if (_isInit) {
         return true;
     }
     else {
