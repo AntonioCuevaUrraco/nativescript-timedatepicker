@@ -16,7 +16,7 @@ class MyDelegate extends NSObject implements IQActionSheetPickerViewDelegate{
       this.mCallback=callback;
     }
     actionSheetPickerViewDidSelectDate(pickerView: IQActionSheetPickerView, date: NSDate): void {
-    
+
       this.dateFormater = NSDateFormatter.alloc().init();
       this.dateFormater.dateFormat = "dd MM yyyy HH:mm Z";
       this.mCallback(this.dateFormater.stringFromDate(date));
@@ -41,16 +41,21 @@ export function init(mCallback: any, title?: any, initialDate?: any, doneText?: 
   }
   mPickerManager = IQActionSheetPickerView.alloc().initWithTitleDoneTextCancelTextDelegate(_title, _doneText, _cancelText, _delegate);
 
+  if (mPickerManager) {
+      _isInit = true;
+    }
+
   if (initialDate) {
     mPickerManager.date = _toNativeDate(initialDate);
   }
   if (buttonColor) {
     mPickerManager.buttonColor = buttonColor;
   }
-  if (mPickerManager) {
-    _isInit = true;
-    return true;
+
+  if (_isInit) {
+      return true;
   }
+
   else {
     console.log("DATETIMEPICKER: the initialize of the plugin failed");
     return false;
@@ -72,7 +77,6 @@ export function registerCallback(mCallback: any) {
     console.log("DATETIMEPICKER: registerCallback is not supported for iOS");
   }
 }
-
 
 /**
  * The 4 types of pickers on the native library
@@ -161,8 +165,4 @@ export function setMaxTime(maxHour, maxMinute) {
 
   }
 }
-
-
-
- 
 

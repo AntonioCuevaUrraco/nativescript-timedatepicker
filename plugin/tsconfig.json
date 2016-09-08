@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "removeComments": true,
+        "experimentalDecorators": true,
+        "sourceMap": true
+    },
+    "files": [
+      "timedatepicker-handler.android.ts",
+      "timedatepicker-handler.ios.ts"
+    ],
+    "compileOnSave": false
+}
