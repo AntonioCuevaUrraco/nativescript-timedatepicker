@@ -3,12 +3,12 @@
   "version": "0.2.4",
   "description": "A NativeScript module providing native Android time and date pickers",
   "main": "timedatepicker-handler.js",
+  "typings": "index.d.ts",
   "nativescript": {
     "platforms": {
       "android": "1.3.0",
       "ios": "1.3.0"
     }
-
   },
   "repository": {
     "type": "git",
@@ -16,11 +16,18 @@
   },
   "keywords": [
     "NativeScript"
-    ],
+  ],
   "author": {
     "name": "Antonio Cueva Urraco",
     "email": "antonio.cueva@smarp.com"
   },
+  "contributors": [
+    {
+      "name": "Brad Martin",
+      "email": "bradwaynemartin@gmail.com",
+      "url": "https://github.com/bradmartin"
+    }
+  ],
   "license": {
     "type": "",
     "url": "https://github.com/AntonioCuevaUrraco/nativescript-timedatepicker/blob/master/LICENSE"

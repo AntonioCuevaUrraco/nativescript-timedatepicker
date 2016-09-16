@@ -1,5 +1,6 @@
 //NativeScript modules
 import applicationModule = require("application");
+declare var NSOject, NSDate, NSDateFormatter, NSDateComponents, NSGregorianCalendar, NSCalendar: any;
 
 var _isInit: boolean = false;
 var _iOSApplication = applicationModule.ios;

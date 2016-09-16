@@ -1,9 +1,4 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
-};
+"use strict";
 var applicationModule = require("application");
 var _isInit = false;
 var _iOSApplication = applicationModule.ios;
@@ -21,34 +16,32 @@ var MyDelegate = (function (_super) {
         this.dateFormater.dateFormat = "dd MM yyyy HH:mm Z";
         this.mCallback(this.dateFormater.stringFromDate(date));
     };
-
     MyDelegate.ObjCProtocols = [IQActionSheetPickerViewDelegate];
     return MyDelegate;
-})(NSObject);
+}(NSObject));
 var _delegate = new MyDelegate();
-var _title="";
-var _doneText="Done";
-var _cancelText="Cancel";
+var _title = "";
+var _doneText = "Done";
+var _cancelText = "Cancel";
 function init(mCallback, title, initialDate, doneText, cancelText, buttonColor) {
     _delegate.setCallback(mCallback);
-    if(title){
-        _title=title;
+    if (title) {
+        _title = title;
     }
-    if(doneText){
-        _doneText=doneText;
+    if (doneText) {
+        _doneText = doneText;
     }
-    if (cancelText){
-        _cancelText=cancelText;
+    if (cancelText) {
+        _cancelText = cancelText;
     }
     mPickerManager = IQActionSheetPickerView.alloc().initWithTitleDoneTextCancelTextDelegate(_title, _doneText, _cancelText, _delegate);
     if (mPickerManager) {
         _isInit = true;
     }
-
     if (initialDate) {
         mPickerManager.date = _toNativeDate(initialDate);
     }
-    if(buttonColor){
+    if (buttonColor) {
         mPickerManager.buttonColor = buttonColor;
     }
     if (_isInit) {
@@ -97,33 +90,33 @@ function showDateTimePickerDialog() {
 }
 exports.showDateTimePickerDialog = showDateTimePickerDialog;
 function dismiss() {
-  if (_isInitFunction()) {
-    mPickerManager.dismiss();
-  }
+    if (_isInitFunction()) {
+        mPickerManager.dismiss();
+    }
 }
 exports.dismiss = dismiss;
 function _toNativeDate(date) {
     if (_isInitFunction()) {
         var comps = NSDateComponents.alloc().init();
         comps.day = date.getDate();
-        comps.month = date.getMonth()+1;
+        comps.month = date.getMonth();
         comps.year = date.getFullYear();
         comps.hour = date.getHours();
         comps.minute = date.getMinutes();
         var cal = NSCalendar.alloc().initWithCalendarIdentifier(NSGregorianCalendar);
-        var nativeDate = cal.dateFromComponents(comps);
-        return nativeDate;
+        var date = cal.dateFromComponents(comps);
+        return date;
     }
 }
 function setMinDate(date) {
     if (_isInitFunction()) {
-        mPickerManager.minimumDate=_toNativeDate(date);
+        mPickerManager.minimumDate(_toNativeDate(date));
     }
 }
 exports.setMinDate = setMinDate;
 function setMaxDate(date) {
     if (_isInitFunction()) {
-        mPickerManager.maximumDate=_toNativeDate(date);
+        mPickerManager.maximumDate(_toNativeDate(date));
     }
 }
 exports.setMaxDate = setMaxDate;
@@ -139,3 +132,4 @@ function setMaxTime(maxHour, maxMinute) {
     }
 }
 exports.setMaxTime = setMaxTime;
+//# sourceMappingURL=timedatepicker-handler.ios.js.map
