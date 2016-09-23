@@ -1,0 +1,17 @@
+.idea/
+.vscode/
+.tscache/
+/demo/node_modules/
+/demo/platforms/
+node_modules/
+.settings/
+
+platforms/ios
+
+.DS_Store
+*js
+*.js.map
+*.tar
+*.tgz
+*.gz
+*.zip
