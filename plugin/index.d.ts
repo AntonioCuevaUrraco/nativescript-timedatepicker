@@ -7,7 +7,7 @@
  * @param {string} cancelText - a date object set to the year, month, day desired as the mindate. *** iOS Only ***
  * @param {string} buttonColor - a date object set to the year, month, day desired as the mindate. *** iOS Only ***
  */
-export function init(callback: Function, title?: string, initialDate?: string, doneText?: any, cancelText?: any, buttonColor?: any): boolean;
+export function init(callback: Function, title?: string, initialDate?: Date, doneText?: any, cancelText?: any, buttonColor?: any): boolean;
 
 
 /**
