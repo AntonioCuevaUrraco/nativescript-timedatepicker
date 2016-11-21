@@ -40,7 +40,7 @@ export function init(mCallback: any, title?: any, initialDate?: any, doneText?: 
   if (cancelText) {
     _cancelText = cancelText;
   }
-  mPickerManager = IQActionSheetPickerView.alloc().initWithTitleDoneTextCancelTextDelegate(_title, _doneText, _cancelText, _delegate);
+  mPickerManager = IQActionSheetPickerView.alloc().initWithTitleDelegate(_title, _delegate);
 
   if (mPickerManager) {
       _isInit = true;
