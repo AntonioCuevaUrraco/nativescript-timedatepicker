@@ -9,26 +9,33 @@ A NativeScript plugin providing native date and time pickers for Android and iOS
 
 ## Usage
 ```ts
-//Require it
-var PickerManager= require("nativescript-timedatepicker");
+
+//Import the plugin
+import * as TimeDatePicker from 'nativescript-timedatepicker';
+
 //Create a callback function
-var mCallback = function (result) {
+let mCallback =  ((result) => {
   if (result) {
     alert("the time is "+result);
   }
-};
+});
+
 //Initialize the PickerManager (.init(yourCallback, title, initialDate))
-PickerManager.init(mCallback,null,null);
+TimeDatePicker.init(mCallback,null,null);
+
 //Show the dialog
-PickerManager.showTimePickerDialog();
+TimeDatePicker.showDatePickerDialog();
 
 ```
-```ts
-//If you want to convert the string into a js Date I recomend to use moment.js
-  var scheduleMoment = moment(result, "DD MM YYYY HH:mm z");
-  var scheduleDate = scheduleMoment.toDate();
-```
 For more examples of usage see the demo [main-view-model.ts](https://github.com/AntonioCuevaUrraco/nativescript-timedatepicker/tree/master/demo/app).
+
+##IOS localization
+
+If you want the buttons to be on some other language than english you have to add that language to your project on xcode.   
+
+
+![alt tag](https://github.com/AntonioCuevaUrraco/nativescript-timedatepicker/blob/master/demo/Screenshots/localize.png) 
+
 
 
 ##Credits
