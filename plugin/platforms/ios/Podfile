@@ -1,1 +1,1 @@
-pod 'IQActionSheetPickerView', :git => 'https://github.com/Smarp/NativescriptIQActionSheetPickerView'
+pod 'IQActionSheetPickerView', '1.0.4'

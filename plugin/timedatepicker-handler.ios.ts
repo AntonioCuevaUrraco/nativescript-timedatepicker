@@ -1,4 +1,4 @@
-//NativeScript modules
+// NativeScript modules
 import applicationModule = require("application");
 declare var NSOject, NSDate, NSDateFormatter, NSDateComponents, NSGregorianCalendar, NSCalendar: any;
 
@@ -13,8 +13,8 @@ class MyDelegate extends NSObject implements IQActionSheetPickerViewDelegate{
     public mCallback;
     public dateFormater;
 
-    setCallback(callback: any){
-      this.mCallback=callback;
+    setCallback(callback: any) {
+      this.mCallback = callback;
     }
     actionSheetPickerViewDidSelectDate(pickerView: IQActionSheetPickerView, date: NSDate): void {
 
@@ -25,22 +25,19 @@ class MyDelegate extends NSObject implements IQActionSheetPickerViewDelegate{
 }
 var _delegate = new MyDelegate();
 var _title = "";
-var _doneText = "Done";
-var _cancelText = "Cancel";
 export function init(mCallback: any, title?: any, initialDate?: any, doneText?: any, cancelText?: any, buttonColor?: any): boolean {
 
   _delegate.setCallback(mCallback);
 
+  if (doneText || cancelText) {
+    console.log("TIMEDATEPICKER: Cancel and Done text strings are deprecated it will use the ios system default. If you need to localize them check how to do it here https://github.com/AntonioCuevaUrraco/nativescript-timedatepicker " );
+  }
+
   if (title) {
     _title = title;
   }
-  if (doneText) {
-    _doneText = doneText;
-  }
-  if (cancelText) {
-    _cancelText = cancelText;
-  }
-  mPickerManager = IQActionSheetPickerView.alloc().initWithTitleDoneTextCancelTextDelegate(_title, _doneText, _cancelText, _delegate);
+
+  mPickerManager = IQActionSheetPickerView.alloc().initWithTitleDelegate(_title, _delegate);
 
   if (mPickerManager) {
       _isInit = true;
@@ -50,7 +47,7 @@ export function init(mCallback: any, title?: any, initialDate?: any, doneText?: 
     mPickerManager.date = _toNativeDate(initialDate);
   }
   if (buttonColor) {
-    mPickerManager.buttonColor = buttonColor;
+    mPickerManager.toolbarButtonColor = buttonColor;
   }
 
   if (_isInit) {
@@ -69,7 +66,7 @@ function _isInitFunction(): boolean {
   }
   else {
     console.log("DATETIMEPICKER: you have to initialize the plugin first");
-    return false
+    return false;
   }
 }
 
@@ -111,7 +108,7 @@ export function dismiss() {
   }
 }
 
- function _toNativeDate(date:Date): NSDate {
+ function _toNativeDate(date: Date): NSDate {
   if (_isInitFunction()) {
     var comps = NSDateComponents.alloc().init();
     comps.day = date.getDate();
@@ -120,8 +117,7 @@ export function dismiss() {
     comps.hour = date.getHours();
     comps.minute = date.getMinutes();
     var cal = NSCalendar.alloc().initWithCalendarIdentifier(NSGregorianCalendar);
-    var date = cal.dateFromComponents(comps);
-    return date;
+    return cal.dateFromComponents(comps);
   }
 }
 
@@ -132,7 +128,7 @@ export function dismiss() {
 */
 export function setMinDate(date: Date) {
   if (_isInitFunction()) {
-    mPickerManager.minimumDate(_toNativeDate(date));
+    mPickerManager.minimumDate = _toNativeDate(date);
   }
 }
 
@@ -143,7 +139,7 @@ export function setMinDate(date: Date) {
 */
 export function setMaxDate(date: Date) {
   if (_isInitFunction()) {
-    mPickerManager.maximumDate(_toNativeDate(date));
+    mPickerManager.maximumDate = _toNativeDate(date);
   }
 }
 
