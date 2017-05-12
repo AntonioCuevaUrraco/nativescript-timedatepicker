@@ -112,7 +112,7 @@ export function dismiss() {
   if (_isInitFunction()) {
     var comps = NSDateComponents.alloc().init();
     comps.day = date.getDate();
-    comps.month = date.getMonth();
+    comps.month = date.getMonth() + 1;
     comps.year = date.getFullYear();
     comps.hour = date.getHours();
     comps.minute = date.getMinutes();
