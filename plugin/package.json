@@ -1,6 +1,6 @@
 {
   "name": "nativescript-timedatepicker",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A NativeScript module providing native Android time and date pickers",
   "main": "timedatepicker-handler",
   "typings": "index.d.ts",
