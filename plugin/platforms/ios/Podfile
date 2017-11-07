@@ -1,1 +1,1 @@
-pod 'IQActionSheetPickerView', '1.0.4'
+pod 'IQActionSheetPickerView', '~> 1.0'
